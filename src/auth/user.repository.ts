@@ -16,6 +16,7 @@ export class UserReposiroty extends Repository<User> {
     user.cpf = cpf
     user.phone_number = phone_number
     user.role = 'employee'
+    user.status = 0
     user.username = username
     user.salt = await bcrypt.genSalt()
     user.password = await this.hashPassword(password, user.salt)
@@ -42,6 +43,16 @@ export class UserReposiroty extends Repository<User> {
 
   private async hashPassword(password: string, salt: string): Promise<string> {
     return bcrypt.hash(password, salt)
+  }
+
+  async getAll(): Promise<User[]> {
+    const query = this.createQueryBuilder('user')
+
+    query.where('user.role = :role and user.status = :status', { role: 'employee', status: 0 })
+    query.orderBy("user.created_at", "DESC")
+
+    const users = query.getMany()
+    return users
   }
 
 }

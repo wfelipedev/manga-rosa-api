@@ -8,6 +8,7 @@ import {
 	Unique
 } from 'typeorm'
 import * as bcrypt from 'bcrypt'
+import { Knowledge } from 'src/knowledge/knowledge.entity'
 
 @Entity()
 @Unique(['username'])
@@ -20,23 +21,24 @@ export class User extends BaseEntity {
 	password: string
 	@Column()
 	name: string
-	@Column()
+	@Column({ nullable: true })
 	email: string
-    @Column({ unique: true })
+    @Column({ unique: true, nullable: true  })
     cpf: string
     @Column({ nullable: true })
     phone_number: string
 	@Column()
 	role: string
+	@Column('int')
+	status: number
 	@Column()
 	salt: string
 	@Column({ type: 'timestamp', nullable: false })
 	created_at: Date
 	@Column({ type: 'timestamp', nullable: false })
 	updated_at: Date
-	// lista de conhecimentos
-	// @OneToMany(type => Knowledge, knowledge => knowledge.user, { eager: true }, )
-    // knowledges: Knowledge[]
+	@OneToMany(type => Knowledge, knowledge => knowledge.user, { eager: true }, )
+    knowledges: Knowledge[]
 
 	async validatePassword(password: string): Promise<boolean> {
 		const hash = await bcrypt.hash(password, this.salt)

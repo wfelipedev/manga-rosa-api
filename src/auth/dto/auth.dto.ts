@@ -1,4 +1,5 @@
 import { IsString, Matches, MinLength, IsNotEmpty } from 'class-validator'
+import { Knowledge } from 'src/knowledge/knowledge.entity'
 
 export class AuthDTO {
     @IsString()
@@ -15,10 +16,8 @@ export class AuthDTO {
     @IsNotEmpty()
     @IsString()
     name: string
-    @IsNotEmpty()
     @IsString()
     email: string
-    @IsNotEmpty()
     @IsString()
     cpf: string
     @IsString()
