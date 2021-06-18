@@ -37,10 +37,6 @@ export class AuthController {
     return {
       id: user.id,
       username: user.username,
-      name: user.name,
-      email: user.email,
-      cpf: user.cpf,
-      phone_number: user.phone_number,
       role: user.role,
     };
   }

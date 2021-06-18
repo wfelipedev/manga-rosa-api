@@ -29,4 +29,4 @@ export class KnowledgeService {
         return this.repository.getAll(user)
     }
 
-}
+} 

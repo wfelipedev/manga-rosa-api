@@ -12,14 +12,4 @@ export class AuthDTO {
       { message: 'password too weak' }
     )
     password: string
-
-    @IsNotEmpty()
-    @IsString()
-    name: string
-    @IsString()
-    email: string
-    @IsString()
-    cpf: string
-    @IsString()
-    phone_number: string
 }

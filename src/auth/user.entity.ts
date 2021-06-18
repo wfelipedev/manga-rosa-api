@@ -4,6 +4,7 @@ import {
 	Entity,
 	JoinTable,
 	OneToMany,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	Unique
 } from 'typeorm'
@@ -20,17 +21,8 @@ export class User extends BaseEntity {
 	@Column()
 	password: string
 	@Column()
-	name: string
-	@Column({ nullable: true })
-	email: string
-    @Column({ unique: true, nullable: true  })
-    cpf: string
-    @Column({ nullable: true })
-    phone_number: string
-	@Column()
 	role: string
-	@Column('int')
-	status: number
+	
 	@Column()
 	salt: string
 	@Column({ type: 'timestamp', nullable: false })

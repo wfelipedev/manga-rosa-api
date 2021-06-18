@@ -3,23 +3,19 @@ import { EntityRepository, Repository } from 'typeorm'
 import { AuthDTO } from './dto/auth.dto'
 import { SignInDTO } from './dto/signin.dto'
 import { User } from './user.entity'
+import { Person } from 'src/person/person.entity'
 import * as bcrypt from 'bcrypt'
 
 @EntityRepository(User)
 export class UserReposiroty extends Repository<User> {
 
   async signUp(dto: AuthDTO): Promise<User> {
-    const { username, password, name, email, cpf, phone_number } = dto
+    const { username, password } = dto
     const user = new User()
-    user.name = name
-    user.email = email
-    user.cpf = cpf
-    user.phone_number = phone_number
-    user.role = 'employee'
-    user.status = 0
     user.username = username
     user.salt = await bcrypt.genSalt()
     user.password = await this.hashPassword(password, user.salt)
+    user.role = 'employee'
     user.created_at = new Date()
     user.updated_at = new Date()
     try {
@@ -48,7 +44,7 @@ export class UserReposiroty extends Repository<User> {
   async getAll(): Promise<User[]> {
     const query = this.createQueryBuilder('user')
 
-    query.where('user.role = :role and user.status = :status', { role: 'employee', status: 0 })
+    query.where('user.role = :role and user.status = :status', { role: 'employee', status: 1 })
     query.orderBy("user.created_at", "DESC")
 
     const users = query.getMany()
