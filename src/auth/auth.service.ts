@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common'
+import { Injectable, UnauthorizedException, NotFoundException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
 import { AuthDTO } from './dto/auth.dto'
@@ -24,11 +24,35 @@ export class AuthService {
 		if (!username) throw new UnauthorizedException('invalid credentials')
 		const payload: JwtPayload = { username }
 		const accessToken = await this.jwtService.sign(payload)
-		console.log(accessToken)
 		return { accessToken }
 	}
 
-	   async getAll(): Promise<User[]> {
+	async getAll(): Promise<User[]> {
         return this.repository.getAll()
+    }
+
+	async getById(id: number, user: User): Promise<User> {
+        const userFound = await this.repository.findOne({
+            where: { id: id }
+        })
+        if (!userFound)
+            throw new NotFoundException(`User with ID ${user.id} not found`)
+        return userFound
+    }
+
+	async getByUser(user: User): Promise<User> {
+        const userFound = await this.repository.findOne({
+            where: { id: user.id }
+        })
+        if (!userFound)
+            throw new NotFoundException(`User with ID ${user.id} not found`)
+        return userFound
+    }
+
+	async update(user: User): Promise<User> {
+        const userFound = await this.getByUser(user)
+        userFound.role = 'admin'
+        await userFound.save()
+        return userFound
     }
 }

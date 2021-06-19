@@ -1,73 +1,90 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+## Descrição
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API Rest HR Management - mesha
+</br>
+</br>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tecnologias usadas:
 
-## Description
+<img align="left" alt="NestJs" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png" />
+<img align="left" alt="NestJs" width="26px" src="https://avatars1.githubusercontent.com/u/28507035?s=200&v=4" />
+<img align="left" alt="Mysql" width="26px" src="https://avatars.githubusercontent.com/u/177543?s=200&v=4" />
+</br>
+</br>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- User model
+  - usermane *
+  - password *
+  - role - default(employee)
 
-## Installation
+- Knowledge model
+  - title *
+  - user_id  *
+
+- Person model
+  - name *
+  - email *
+  - cpf *
+  - phone_number
+  - knowledges list *
+  - user_id
+
+## Instalação
+
 
 ```bash
-$ npm install
+$ yarn - Isso irá instalar todas as dependencias
 ```
+</br>
+</br>
 
-## Running the app
+## Para rodar a API
+
 
 ```bash
-# development
-$ npm run start
-
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
+</br>
+</br>
 
-## Test
+## Postgresql Database Connection
 
+- host: 'localhost',
+- port: 5432,
+- username: 'root',
+- password: 'admin',
+- database: 'mesha',
+</br>
+</br>
+## Endpoints
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# url_base
+$ http://localhost:3000/api
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- ### User's Endpoints
+  - Signup(POST): url_base/auth/signup
+  - Signin(POST): url_base/auth/signin
+  - update(PATCH): url_base/auth/update - Endpoint para alterar role(apenas para teste)
+  
+- ### Knowledge's Endpoints
+  - persist(POST): url_base/knowledge
+  - getAll(GET): url_base/knowledge
+  - getById(GET): url_base/knowledge/$id
+- ### Person's Endpoints
+  - persist(POST): url_base/person
+  - getAll(GET): url_base/person
+  - getById(GET): url_base/person/$id
+  - update(PATCH): url_base/person/$id/update
+</br>
+</br>
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- E-mail - dev.felpz@gmail.com
+- Linkedin - [My Linkedin](https://www.linkedin.com/in/wanderson-felipe-freire-pereira-618654175/)
 
-## License
-
-Nest is [MIT licensed](LICENSE).

@@ -11,7 +11,7 @@ import { User } from 'src/auth/user.entity'
 export class Knowledge extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number
-	@Column({ unique: true })
+	@Column()
 	title: string
 	@ManyToOne(type => User, user => user.knowledges, { eager: false })
     user: User

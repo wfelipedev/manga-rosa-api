@@ -10,6 +10,7 @@ export class CreatePersonDTO {
     email: string
     @IsNotEmpty()
     @IsString()
+    @MinLength(14)
     cpf: string
     @IsString()
     phone_number: string
