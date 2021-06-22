@@ -1,6 +1,6 @@
 ## Descrição
 
-API Rest HR Management - mesha
+API Rest HR Management
 </br>
 </br>
 
@@ -57,7 +57,7 @@ $ yarn start:prod
 - port: 5432,
 - username: 'root',
 - password: 'admin',
-- database: 'mesha',
+- database: 'mangarosa',
 </br>
 </br>
 
